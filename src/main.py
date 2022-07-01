@@ -45,9 +45,10 @@ async def on_ready():
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2 and sys.argv[1] == "local":
-        configure()
-    else:
+    if len(sys.argv) == 2 and sys.argv[1] == "env":
         token = os.environ['TOKEN']
+    else:
+        configure()
+        client.owner_id = ownerID
     client.run(token)
     db.conClose()
