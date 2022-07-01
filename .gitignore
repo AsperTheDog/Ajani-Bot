@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+restoreDB/magic.json
+restoreDB/magic_sets.json
+.idea/
+config.cfg
+magic.sqlite
+emojis/
+
+!emojis/.gitkeep
