@@ -1,4 +1,5 @@
 import configparser
+import os
 
 from disnake.ext.commands import InteractionBot
 
@@ -7,25 +8,25 @@ from commands.search import SearchCog
 from commands.user import UserCog
 from dbManager import db
 
-token = ""
-ownerID = 0
+# token = ""
+# ownerID = 0
 
 
-def configure():
-    global token, ownerID
-    config = configparser.ConfigParser()
-    config.read('config.cfg')
-    try:
-        token = config["BOT"]["token"]
-        ownerID = config["BOT"]["owner"]
-    except KeyError:
-        config = configparser.ConfigParser()
-        config["BOT"] = {
-            "token": "TOKEN HERE",
-            "owner": 0
-        }
-        with open("config.cfg", "w") as cfgFile:
-            config.write(cfgFile)
+# def configure():
+#     global token, ownerID
+#     config = configparser.ConfigParser()
+#     config.read('config.cfg')
+#     try:
+#         token = config["BOT"]["token"]
+#         ownerID = config["BOT"]["owner"]
+#     except KeyError:
+#         config = configparser.ConfigParser()
+#         config["BOT"] = {
+#             "token": "TOKEN HERE",
+#             "owner": 0
+#         }
+#         with open("config.cfg", "w") as cfgFile:
+#             config.write(cfgFile)
 
 
 client = InteractionBot(
@@ -43,7 +44,7 @@ async def on_ready():
 
 
 if __name__ == "__main__":
-    client.owner_id = ownerID
-    configure()
+    # configure()
+    token = os.environ['TOKEN']
     client.run(token)
     db.conClose()
