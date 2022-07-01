@@ -1,4 +1,3 @@
-# Defines a simple paginator of buttons for the embed.
 import disnake
 
 from dbManager import db

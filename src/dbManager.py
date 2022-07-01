@@ -176,7 +176,7 @@ class DbManager:
         return embed
 
     def getHoldingCardEmbed(self, holdingInfo, emojis: list[Emoji]):
-        cardInfo = self.search([("id", holdingInfo["card"], "=")], [], True, False)[0]
+        cardInfo = self.search([("id", holdingInfo["card"], "=")], [], ([], False), True, False)[0]
         setData = self.getSet(cardInfo["set_code"])
         emoj = str([emoji for emoji in emojis if emoji.name == "mythic"][0])
         for emoji in emojis:
@@ -241,7 +241,7 @@ class DbManager:
         embed = Embed(title=discAccount.display_name + " ({}#{})".format(discAccount.name, discAccount.discriminator), description=descr)
         embed.set_author(name=str(discAccount.id))
         if user["selectedCard"] is not None:
-            card = db.search([("id", user["selectedCard"], "=")], [], True, False)
+            card = db.search([("id", user["selectedCard"], "=")], [], ([], False), True, False)
             embed.set_thumbnail(url=card[0]["art_crop"])
         else:
             embed.set_thumbnail(url=discAccount.display_avatar.url)

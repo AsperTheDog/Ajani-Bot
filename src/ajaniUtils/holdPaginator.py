@@ -1,6 +1,3 @@
-# Defines a simple paginator of buttons for the embed.
-import asyncio
-
 import disnake
 from disnake import HTTPException
 
@@ -15,7 +12,7 @@ class HoldMenu(disnake.ui.View):
         self.embed = initEmbed
         self.embed_count = 0
 
-        card = db.search([("id", cards[0]["card"], "=")], [], True, False)[0]
+        card = db.search([("id", cards[0]["card"], "=")], [], ([], False), True, False)[0]
         self.user = db.getUser(cards[0]["user"])
         self.imgs = [card["png_img"], card["art_crop"]]
         self.img = self.imgs[0]
